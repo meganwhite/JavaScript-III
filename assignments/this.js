@@ -13,14 +13,56 @@
 
 // code example for Window Binding
 
+function sum(num1, num2) {
+    console.log(this);
+    return num1 + num2;
+}
+
+sum(4,5);
+
 // Principle 2
 
 // code example for Implicit Binding
+
+const intro = {
+    greeting: "Hello!",
+    speak: function(city, state) {
+        console.log(`${this.greeting} I live in ${city}, ${state}`);
+    }
+}
+
+intro.speak('Boston','Massachusetts');
 
 // Principle 3
 
 // code example for New Binding
 
+function MenuItem(name,price) {
+    this.name = name;
+    this.price = price;
+    this.report = function(){
+        console.log(`A ${this.name} costs ${this.price}`);
+    }
+}
+
+const pizza = new MenuItem('pizza','$12');
+pizza.report();
+
 // Principle 4
 
 // code example for Explicit Binding
+
+const me = {
+    name: 'Megan',
+    age: 26,
+    city: 'Boston'
+}
+
+const favoriteBooks = ['Kafka on the Shore','Micromotives and Macrobehavior','The Phantom Tollbooth'];
+
+function bio(book1,book2,book3){
+    console.log(`My name is ${this.name}, and I am ${this.age} years old. I live in ${this.city} and like to read. My favorite books 
+    are ${book1}, ${book2}, and ${book3}`)
+}
+
+bio.call(me,...favoriteBooks);
